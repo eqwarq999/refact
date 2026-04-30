@@ -1,48 +1,27 @@
 import { useEffect, useState } from 'react'
 
-export default function useFetch(fetcher, initialData = null) {
+export default function useFetch(fetchFunction, initialData = []) {
   const [data, setData] = useState(initialData)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const controller = new AbortController()
-    let isActive = true
-
-    const loadData = async () => {
-      setIsLoading(true)
-      setError(null)
-
+    async function loadData() {
       try {
-        const result = await fetcher(controller.signal)
+        setIsLoading(true)
+        setError(null)
 
-        if (isActive) {
-          setData(result)
-        }
-      } catch (requestError) {
-        if (!isActive || requestError?.name === 'AbortError') {
-          return
-        }
-
-        setError(
-          requestError instanceof Error
-            ? requestError.message
-            : 'Не удалось загрузить данные',
-        )
+        const result = await fetchFunction()
+        setData(result)
+      } catch (error) {
+        setError(error.message || 'Не удалось загрузить данные')
       } finally {
-        if (isActive) {
-          setIsLoading(false)
-        }
+        setIsLoading(false)
       }
     }
 
     loadData()
-
-    return () => {
-      isActive = false
-      controller.abort()
-    }
-  }, [fetcher])
+  }, [fetchFunction])
 
   return { data, isLoading, error }
 }

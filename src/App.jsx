@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import SearchInput from './components/SearchInput.jsx'
 import UserList from './components/UserList.jsx'
 import useFetch from './hooks/useFetch.js'
@@ -9,17 +9,9 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const { data: users, isLoading, error } = useFetch(getUsers, [])
 
-  const filteredUsers = useMemo(() => {
-    const normalizedQuery = searchQuery.trim().toLowerCase()
-
-    if (!normalizedQuery) {
-      return users
-    }
-
-    return users.filter((user) =>
-      user.name.toLowerCase().includes(normalizedQuery),
-    )
-  }, [searchQuery, users])
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
 
   return (
     <main className="users-page">

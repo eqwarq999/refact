@@ -1,17 +1,11 @@
-const USERS_API_URL = 'https://jsonplaceholder.typicode.com/users'
+const USERS_URL = 'https://jsonplaceholder.typicode.com/users'
 
-export async function getUsers(signal) {
-  const response = await fetch(USERS_API_URL, { signal })
+export async function getUsers() {
+  const response = await fetch(USERS_URL)
 
   if (!response.ok) {
-    throw new Error(`Ошибка загрузки пользователей: ${response.status}`)
+    throw new Error('Не удалось загрузить пользователей')
   }
 
-  const users = await response.json()
-
-  if (!Array.isArray(users)) {
-    throw new Error('Сервер вернул некорректный формат данных')
-  }
-
-  return users
+  return response.json()
 }
