@@ -1,0 +1,152 @@
+.users-page {
+  min-height: 100vh;
+  padding: 48px 20px;
+  display: flex;
+  justify-content: center;
+  background: #f6f8fb;
+}
+
+.users-panel {
+  width: min(100%, 860px);
+  padding: 32px;
+  border: 1px solid #d9e0ea;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.users-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.users-eyebrow {
+  margin-bottom: 6px;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.users-count {
+  min-width: max-content;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #0f5132;
+  background: #dff7e9;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.search-field {
+  display: grid;
+  gap: 8px;
+  color: #334155;
+  font-weight: 700;
+  text-align: left;
+}
+
+.search-field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+  background: #ffffff;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.users-content {
+  margin-top: 24px;
+}
+
+.status-message {
+  padding: 18px;
+  border: 1px solid #d9e0ea;
+  border-radius: 8px;
+  color: #475569;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.status-message--error {
+  border-color: #fecaca;
+  color: #991b1b;
+  background: #fef2f2;
+}
+
+.user-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid #d9e0ea;
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: left;
+}
+
+.user-card h2 {
+  margin-bottom: 4px;
+  font-size: 20px;
+}
+
+.user-card p {
+  color: #64748b;
+}
+
+.user-company {
+  max-width: 240px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #0f5132;
+  background: #ecfdf5;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .users-page {
+    padding: 20px 12px;
+  }
+
+  .users-panel {
+    padding: 20px;
+  }
+
+  .users-header,
+  .user-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .users-count,
+  .user-company {
+    width: fit-content;
+    max-width: 100%;
+    text-align: left;
+  }
+}
